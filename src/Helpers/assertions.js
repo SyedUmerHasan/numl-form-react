@@ -3,7 +3,7 @@ export let assertions = [
         name : "alphanumeric",
         message : "All characters must be Alphanumeric",
         function : (val) => {
-            return typeof val === 'string' && val.match(/^[a-z][a-z\d]*$/i)
+            return typeof val === 'string' && val.match(/^[a-z\d]*$/i)
         }
     },
     {

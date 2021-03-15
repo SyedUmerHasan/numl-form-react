@@ -31,8 +31,8 @@ export default function Form(allProps) {
         <>
         <nu-form>
             <FormField label="Full Name" name="full-name" onInput={updateData} assert="alphabets"></FormField>
-            <FormField label="Email Address" name="email-address" onInput={updateData}></FormField>
-            <FormField label="Password" name="password" onInput={updateData}></FormField>
+            <FormField label="Email Address" name="email-address" onInput={updateData} assert="alphanumeric"></FormField>
+            <FormField label="Password" name="password" onInput={updateData} assert="alphanumeric"></FormField>
             <nu-btn action="submit">Submit</nu-btn>
             <br/>
             <button onClick={umer}>Check States in console</button>
