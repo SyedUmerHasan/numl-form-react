@@ -3,7 +3,7 @@ import FormInput from './FormInput';
 import FormLabel from './FormLabel';
 
 export default function FormField(allProps) {
-    let { label, onInput, name} = allProps;
+    let { label, onInput, name, assert} = allProps;
 
     const handleChecklistChange = (data) =>{
         onInput({
@@ -15,9 +15,7 @@ export default function FormField(allProps) {
     return (
         <>
             <FormLabel label={label} for={name}></FormLabel>
-            <FormInput onInput={handleChecklistChange} name={name}></FormInput>
-            
-            <nu-btn action="submit">Submit</nu-btn>
+            <FormInput onInput={handleChecklistChange} name={name} assert={assert}></FormInput>
         </>
     )
 }
