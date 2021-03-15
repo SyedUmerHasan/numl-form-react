@@ -24,14 +24,10 @@ export default function FormInput(allProps) {
                     var a = !!eachEvent.function(evt.detail)
                     if(a){
                         newref.current.style.opacity = 1;
-                    }    
-                    else{
-                        newref.current.style.opacity = 0;
+                        return 0
                     }
                 }
-                else{
-                    newref.current.style.opacity = 0;
-                }
+                newref.current.style.opacity = 0;
                 return 0
             })
             onInput(evt.detail)
