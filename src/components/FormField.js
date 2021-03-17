@@ -1,21 +1,19 @@
-import { useCallback } from 'react'
+import { useEffect, useRef } from 'react'
+import FormCheck from './FormCheck';
 import FormInput from './FormInput';
 import FormLabel from './FormLabel';
 
 export default function FormField(allProps) {
-    let { label, onInput, name, assert} = allProps;
-
-    const handleChecklistChange = (data) =>{
-        onInput({
-            name : name,
-            value : data
-        })
-    }
+    let { label, name, assert, message} = allProps;
+    console.log(message)
 
     return (
         <>
-            <FormLabel label={label} for={name}></FormLabel>
-            <FormInput onInput={handleChecklistChange} name={name} assert={assert}></FormInput>
+            <nu-field>                
+                <FormLabel name={name} label={label} ></FormLabel>
+                <FormInput grow="1" name={name}></FormInput>
+                <FormCheck name={name} message={message} assertFunction={assert} ></FormCheck>
+            </nu-field>
         </>
     )
 }

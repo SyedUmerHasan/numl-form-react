@@ -1,11 +1,12 @@
-import logo from './logo.svg';
+import 'numl';
 import './App.css';
 import Form from './components/Form';
-// import jsx from 'jsx-native-events';
 
 function App() {
 	return (
-		<Form></Form>
+		<nu-root>
+			<Form></Form>
+		</nu-root>
 	);
 }
 

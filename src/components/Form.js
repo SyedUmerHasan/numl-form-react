@@ -1,43 +1,72 @@
 import React, { useState } from 'react';
+import { getAssertFunction, getAssertMessage } from '../Helpers/assertion-helper';
+import { AssertionsEnum } from '../Helpers/assertions';
 import FormField from './FormField';
 
 export default function Form(allProps) {
-    let { checked } = allProps;
     const [fullName, setFullName] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
 
-    function updateData(fieldEntry){
-        console.log("fieldEntry", fieldEntry)
-        switch (fieldEntry.name) {
-            case 'full-name':
-                setFullName(fieldEntry.value)
-                break;
-            case 'email-address':
-                setEmailAddress(fieldEntry.value)
-                break;
-            case 'password':
-                setPassword(fieldEntry.value)
-                break;
-        }
-    }
-    function umer(){
-        console.log("fullName " + fullName)
-        console.log("emailAddress " + emailAddress)
-        console.log("password " + password)
-    }
+    var dynamicFormArray = [
+        {
+            name: "fname",
+            label: "First Name",
+            assertion: AssertionsEnum.Alphabets
+        },
+        {
+            name: "lname",
+            label: "Last Name",
+            assertion: AssertionsEnum.Alphabets
+        },
+        {
+            name: "username",
+            label: "User Name",
+            assertion: AssertionsEnum.SpecialCharacters
+        },
+        {
+            name: "email",
+            label: "Email Address",
+            assertion: AssertionsEnum.Alphabets
+        },
+        {
+            name: "age",
+            label: "Age",
+            assertion: AssertionsEnum.Number
+        },
+        {
+            name: "blogurl",
+            label: "Website / Blog URL",
+            assertion: AssertionsEnum.URL
+        },
+    ]
 
     return (
         <>
-        <nu-form>
-            <FormField label="Full Name" name="full-name" onInput={updateData} assert="alphabets"></FormField>
-            <FormField label="Email Address" name="email-address" onInput={updateData} assert="alphanumeric"></FormField>
-            <FormField label="Password" name="password" onInput={updateData} assert="alphanumeric"></FormField>
-            <nu-btn action="submit">Submit</nu-btn>
-            <br/>
-            <button onClick={umer}>Check States in console</button>
-        </nu-form>
-        
+            <nu-flow fill="subtle" padding>
+                <nu-attrs
+                    for="card"
+                    place="space-around"></nu-attrs>
+
+                <nu-card gap>
+                    <nu-h3>Login</nu-h3>
+
+                    <nu-form control="output[.value]" gap="1x">
+                        {dynamicFormArray.map((eachFormItem) => {
+                            return (<FormField
+                                label={eachFormItem.label}
+                                name={eachFormItem.name}
+                                assert={getAssertFunction(eachFormItem.assertion)}
+                                message={getAssertMessage(eachFormItem.assertion)}></FormField>)
+                        })}
+                        <nu-btn special action="submit">Submit</nu-btn>
+                        <nu-block overflow="auto" scrollbar width="max 16">
+                            <nu-value id="output"></nu-value>
+                        </nu-block>
+                    </nu-form>
+                </nu-card>
+            </nu-flow>
+
         </>
     );
 }
