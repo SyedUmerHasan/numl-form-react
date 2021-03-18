@@ -4,17 +4,14 @@ import FormInput from './FormInput';
 import FormLabel from './FormLabel';
 
 export default function FormField(allProps) {
-    let { label, name, assert, message} = allProps;
-    console.log(message)
+    let { name, assert, message, children } = allProps;
 
     return (
-        <>
-            <nu-field>                
-                <FormLabel name={name} label={label} ></FormLabel>
-                <FormInput grow="1" name={name}></FormInput>
-                <FormCheck name={name} message={message} assertFunction={assert} ></FormCheck>
-            </nu-field>
-        </>
+        <nu-field>
+            <FormLabel name={name}>{children}</FormLabel>
+            <FormInput grow="1" name={name}></FormInput>
+            <FormCheck name={name} message={message} assertFunction={assert} ></FormCheck>
+        </nu-field>
     )
 }
 
